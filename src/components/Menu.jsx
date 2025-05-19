@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
 import CartPopup from "./CartPopup";
+import ProductCustomization from "./ProductCustomization";
 import "./Menu.css";
 
 export default function Menu() {
@@ -13,9 +13,10 @@ export default function Menu() {
   const [loading, setLoading] = useState(true);
   const [visibleItems, setVisibleItems] = useState(6); // For "Load More" functionality
   const [showCartPopup, setShowCartPopup] = useState(false);
+  const [showCustomization, setShowCustomization] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [addedItem, setAddedItem] = useState(null);
   const navigate = useNavigate();
-  const { addToCart } = useCart();
 
   // Fetch categories from Firebase
   useEffect(() => {
@@ -81,14 +82,18 @@ export default function Menu() {
 
   const handleAddToCart = (e, item) => {
     e.stopPropagation(); // Prevent navigation when clicking the button
-    addToCart(item);
-    setAddedItem(item);
-    setShowCartPopup(true);
+    setSelectedItem(item);
+    setShowCustomization(true);
   };
   
   const handleClosePopup = () => {
     setShowCartPopup(false);
     setAddedItem(null);
+  };
+  
+  const handleCloseCustomization = () => {
+    setShowCustomization(false);
+    setSelectedItem(null);
   };
   
   const loadMoreItems = () => {
@@ -287,6 +292,13 @@ export default function Menu() {
       
       {showCartPopup && addedItem && (
         <CartPopup item={addedItem} onClose={handleClosePopup} />
+      )}
+      
+      {showCustomization && selectedItem && (
+        <ProductCustomization 
+          product={selectedItem} 
+          onClose={handleCloseCustomization} 
+        />
       )}
     </div>
   );

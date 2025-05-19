@@ -2,17 +2,15 @@ import React, { useState, useEffect } from "react";
 import { collection, getDocs, query, limit } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
-import CartPopup from "./CartPopup";
 import "./PopularItems.css";
+import ProductCustomization from "./ProductCustomization";
 
 const PopularItems = () => {
   const [popularItems, setPopularItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showCartPopup, setShowCartPopup] = useState(false);
+  const [showCustomization, setShowCustomization] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const navigate = useNavigate();
-  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchPopularItems = async () => {
@@ -38,7 +36,7 @@ const PopularItems = () => {
             id: "1",
             name: "Green Goddess",
             ingredients: "Spinach, kale, banana, mango, and chia seeds",
-            price: 7.99,
+            price: 299,
             image: "greensmoothie.jpg",
             tag: "BESTSELLER"
           },
@@ -46,21 +44,21 @@ const PopularItems = () => {
             id: "2",
             name: "Berry Blast",
             ingredients: "Strawberry, blueberry, raspberry, yogurt, and honey",
-            price: 8.49,
+            price: 349,
             image: "berry.jpg",
           },
           {
             id: "3",
             name: "Tropical Paradise",
             ingredients: "Pineapple, mango, coconut milk, and banana",
-            price: 7.99,
+            price: 299,
             image: "tropical.jpg",
           },
           {
             id: "4",
             name: "Protein Power",
             ingredients: "Almond milk, banana, peanut butter, and protein powder",
-            price: 8.99,
+            price: 399,
             image: "protein.jpg",
             tag: "NEW"
           },
@@ -96,13 +94,12 @@ const PopularItems = () => {
   const handleAddToCart = (e, item) => {
     e.stopPropagation();
     e.preventDefault();
-    addToCart(item);
     setSelectedItem(item);
-    setShowCartPopup(true);
+    setShowCustomization(true);
   };
   
-  const handleClosePopup = () => {
-    setShowCartPopup(false);
+  const handleCloseCustomization = () => {
+    setShowCustomization(false);
     setSelectedItem(null);
   };
   
@@ -143,7 +140,7 @@ const PopularItems = () => {
             <h3>{item.name}</h3>
             <p className="item-ingredients">{item.ingredients}</p>
             <div className="item-footer">
-              <span className="item-price">₹{item.price.toFixed(2)}</span>
+              <span className="item-price">₹{item.price}</span>
               <button 
                 className="add-to-cart-btn"
                 onClick={(e) => handleAddToCart(e, item)}
@@ -161,10 +158,10 @@ const PopularItems = () => {
         </button>
       </div>
 
-      {showCartPopup && selectedItem && (
-        <CartPopup 
-          item={selectedItem} 
-          onClose={handleClosePopup} 
+      {showCustomization && selectedItem && (
+        <ProductCustomization 
+          product={selectedItem} 
+          onClose={handleCloseCustomization} 
         />
       )}
     </section>
