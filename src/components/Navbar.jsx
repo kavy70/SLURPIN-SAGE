@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CartButton from './CartButton';
 import './Navbar.css';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,10 +12,6 @@ function Navbar() {
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
-  };
-
-  const handleOrderClick = () => {
-    navigate('/menu');
   };
 
   return (
@@ -39,10 +33,6 @@ function Navbar() {
           <CartButton />
         </li>
       </ul>
-
-      {location.pathname !== '/menu' && (
-        <button className="order-button" onClick={handleOrderClick}>Order Now</button>
-      )}
     </nav>
   );
 }

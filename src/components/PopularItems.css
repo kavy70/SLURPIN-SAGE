@@ -1,6 +1,7 @@
 .popular-items-section {
-  padding: 80px 20px;
+  padding: 60px 20px;
   background-color: #f9f9f9;
+  overflow-x: hidden;
 }
 
 /* Animation keyframes */
@@ -290,38 +291,146 @@
 
 @media (max-width: 1024px) {
   .popular-items-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 10px;
   }
 }
 
 @media (max-width: 768px) {
   .popular-items-section {
-    padding: 60px 15px;
+    padding: 40px 15px;
   }
-  
+
+  .popular-items-header {
+    margin-bottom: 30px;
+  }
+
   .popular-items-header h2 {
     font-size: 28px;
   }
-  
+
   .popular-items-header p {
     font-size: 16px;
+    padding: 0 20px;
+  }
+
+  .popular-items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .item-image {
+    height: 180px;
+  }
+
+  .popular-item-card h3 {
+    font-size: 18px;
+    margin: 15px 15px 8px;
+  }
+
+  .item-ingredients {
+    font-size: 13px;
+    margin: 0 15px 15px;
+  }
+
+  .item-footer {
+    padding: 12px 15px 15px;
+  }
+
+  .add-to-cart-btn {
+    padding: 8px 12px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 480px) {
+  .popular-items-section {
+    padding: 30px 10px;
+  }
+
+  .popular-items-header h2 {
+    font-size: 24px;
+  }
+
+  .popular-items-header p {
+    font-size: 14px;
+    padding: 0 15px;
+  }
+
   .popular-items-grid {
     grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+    gap: 20px;
   }
-  
+
   .item-image {
-    height: 180px;
+    height: 160px;
   }
-  
-  .popular-item-card h3 {
+
+  .popular-item-card {
+    max-width: 100%;
+  }
+
+  .item-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .item-price {
     font-size: 18px;
+    margin-bottom: 5px;
   }
-  
-  .view-all-btn {
+
+  .add-to-cart-btn {
     width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .view-all-btn {
+    width: 80%;
+    max-width: 250px;
+    padding: 12px 20px;
+    font-size: 14px;
+    margin: 25px auto 0;
+    display: block;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .popular-items-grid {
+    max-width: 260px;
+  }
+
+  .item-image {
+    height: 140px;
+  }
+
+  .popular-item-card h3 {
+    font-size: 16px;
+    margin: 12px 12px 6px;
+  }
+
+  .item-ingredients {
+    font-size: 12px;
+    margin: 0 12px 12px;
+  }
+
+  .item-price {
+    font-size: 16px;
+  }
+
+  .add-to-cart-btn {
+    padding: 10px;
+    font-size: 13px;
   }
 } 

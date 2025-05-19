@@ -251,22 +251,54 @@ body, html {
 @media (max-width: 480px) {
   .hero-section {
     padding: 30px 15px;
+    gap: 30px;
   }
 
   .hero-content h1 {
     font-size: 2rem;
+    margin-bottom: 15px;
   }
 
   .hero-content p {
     font-size: 1rem;
+    margin-bottom: 20px;
+    padding: 0 10px;
   }
 
   .hero-buttons {
     flex-direction: column;
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 0.95rem;
   }
 
   .hero-image img {
-    width: 300px;
+    width: 280px;
+    margin-top: 20px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .hero-section {
+    padding: 25px 12px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .hero-image img {
+    width: 240px;
   }
 }
 

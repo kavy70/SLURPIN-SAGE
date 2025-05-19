@@ -1,6 +1,6 @@
 .navbar {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   background-color: #2f7d1f;
   padding: 20px 40px;
@@ -45,24 +45,13 @@
   color: #f57c00;
 }
 
-.order-button {
-  background-color: #f57c00;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  justify-self: end;
-}
-
 .cart-icon {
   color: white;
   cursor: pointer;
   transition: color 0.3s ease;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .cart-icon i {
@@ -78,31 +67,42 @@
   font-size: 28px;
   color: white;
   cursor: pointer;
+  padding: 5px;
+  justify-self: end;
 }
 
 @media (max-width: 768px) {
   .navbar {
-    grid-template-columns: 1fr auto auto;
-    padding: 15px 20px;
+    grid-template-columns: auto 1fr auto;
+    padding: 12px 16px;
+    gap: 15px;
   }
 
   .nav-toggle {
-    display: block;
-    grid-column: 2;
-    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 3;
+    margin-left: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo {
+    font-size: 20px;
   }
 
   .nav-links {
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 70px;
     left: 0;
     width: 100%;
     background-color: #2f7d1f;
-    padding: 20px 0;
+    padding: 0;
     display: none;
     text-align: center;
-    gap: 20px;
+    gap: 0;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
@@ -111,9 +111,49 @@
     display: flex;
   }
 
-  .order-button {
-    grid-column: 3;
-    padding: 8px 15px;
-    font-size: 14px;
+  .nav-links li {
+    width: 100%;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a {
+    display: block;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .cart-icon {
+    order: 2;
+    width: 100%;
+    padding: 15px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    top: 60px;
+  }
+
+  .nav-toggle {
+    width: 35px;
+    height: 35px;
+    font-size: 24px;
   }
 }
